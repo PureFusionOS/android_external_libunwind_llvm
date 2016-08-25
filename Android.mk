@@ -47,4 +47,11 @@ LOCAL_CPPFLAGS := $(LIBUNWIND_CPPFLAGS)
 LOCAL_MODULE_TARGET_ARCH := arm
 LOCAL_CXX_STL := none
 LOCAL_SANITIZE := never
+ifeq ($(TARGET_ARCH),arm64)
+# Workaround for an apparent clang bug:
+# ldc2 p1, cr8, [r0], #4
+# is seen as invalid with -mcpu=cortex-a53 even in 32-bit mode
+LOCAL_CFLAGS_arm += -mcpu=cortex-a15
+LOCAL_ASFLAGS_arm += -mcpu=cortex-a15
+endif
 include $(BUILD_STATIC_LIBRARY)
