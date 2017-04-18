@@ -36,6 +36,7 @@ LIBUNWIND_CPPFLAGS := \
     -Wextra \
     -Wno-unused-function \
     -Wno-unused-parameter \
+    -Wno-unused-local-typede \
     -Werror \
 
 include $(CLEAR_VARS)
